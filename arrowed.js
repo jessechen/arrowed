@@ -21,7 +21,9 @@ for (let beat of stream) {
 }
 
 function drawArrow(position, y) {
-    const arrowRed = document.getElementById("arrow-red");
+    const arrow = y % ARROW_HEIGHT === 0 ?
+        document.getElementById("arrow-red") :
+        document.getElementById("arrow-blue");
     let rotation = 0;
     let x = position * ARROW_WIDTH;
     if (position === 0) {
@@ -40,7 +42,7 @@ function drawArrow(position, y) {
     context.resetTransform();
     context.translate(x, y);
     context.rotate(rotation);
-    context.drawImage(arrowRed, 0, 0);
+    context.drawImage(arrow, 0, 0);
 }
 
 function arrowPositions(beat) {
