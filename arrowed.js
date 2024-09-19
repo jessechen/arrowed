@@ -1,5 +1,5 @@
-const ARROW_HEIGHT = 100;
-const ARROW_WIDTH = 100;
+const ARROW_HEIGHT = 80;
+const ARROW_WIDTH = 80;
 
 
 let stream = "ULRDULRDURLDURLD".split("");
@@ -20,8 +20,8 @@ for (let beat of stream) {
 }
 
 function drawArrow(position, y) {
-    context.fillStyle = "green";
-    context.fillRect(position * ARROW_WIDTH + 10, y + 10, 80, 80);
+    const arrowRed = document.getElementById("arrow-red");
+    context.drawImage(arrowRed, position * ARROW_WIDTH, y);
 }
 
 function arrowPositions(beat) {
