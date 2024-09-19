@@ -1,5 +1,5 @@
-const ARROW_HEIGHT = 80;
-const ARROW_WIDTH = 80;
+const ARROW_HEIGHT = 64;
+const ARROW_WIDTH = 64;
 
 
 let stream = "ULRDULRDURLDURLD".split("");
