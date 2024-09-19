@@ -1,5 +1,6 @@
 const ARROW_HEIGHT = 64;
 const ARROW_WIDTH = 64;
+const TAU = Math.PI * 2;
 
 
 let stream = "ULRDULRDURLDURLD".split("");
@@ -21,7 +22,25 @@ for (let beat of stream) {
 
 function drawArrow(position, y) {
     const arrowRed = document.getElementById("arrow-red");
-    context.drawImage(arrowRed, position * ARROW_WIDTH, y);
+    let rotation = 0;
+    let x = position * ARROW_WIDTH;
+    if (position === 0) {
+        rotation = TAU / 4;
+        x += ARROW_WIDTH;
+    }
+    if (position === 2) {
+        rotation = TAU / 2;
+        x += ARROW_WIDTH;
+        y += ARROW_HEIGHT;
+    }
+    if (position === 3) {
+        rotation = TAU / -4;
+        y += ARROW_HEIGHT;
+    }
+    context.resetTransform();
+    context.translate(x, y);
+    context.rotate(rotation);
+    context.drawImage(arrowRed, 0, 0);
 }
 
 function arrowPositions(beat) {
