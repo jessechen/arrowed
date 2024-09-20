@@ -6,26 +6,39 @@ const params = new URLSearchParams(location.search);
 const string = params.get("a") || "drudlrdrudrdluldrdluruldrdluruldulurdldrulurduruldrdlrulurl";
 const speed = params.get("s") || "1";
 const stream = string.split("").filter((char) => char.match(/[LDURldur2468]/));
-
 const numBeats = stream.length;
+
 const canvas = document.querySelector("canvas");
 canvas.setAttribute("height", ARROW_HEIGHT / 2 * (numBeats + 1));
 canvas.setAttribute("width", ARROW_WIDTH * 4);
 const context = canvas.getContext("2d");
+draw();
 
-let y = 0;
-for (let beat of stream) {
-    let positions = arrowPositions(beat);
-    for (let position of positions) {
-        drawArrow(position, y);
+async function draw() {
+    const arrowImages = await loadImages(["arrow-red.png", "arrow-blue.png"]);
+    let y = 0;
+    for (let beat of stream) {
+        let positions = arrowPositions(beat);
+        for (let position of positions) {
+            drawArrow(position, y, arrowImages);
+        }
+        y += ARROW_HEIGHT / 2;
     }
-    y += ARROW_HEIGHT / 2;
 }
 
-function drawArrow(position, y) {
-    const arrow = y % ARROW_HEIGHT === 0 ?
-        document.getElementById("arrow-red") :
-        document.getElementById("arrow-blue");
+function loadImages(urls) {
+    return Promise.all(urls.map((url) => {
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            image.src = url;
+            image.onload = () => resolve(image);
+            image.onerror = () => reject(`Image failed to load: ${url}`);
+        })
+    }))
+}
+
+function drawArrow(position, y, arrowImages) {
+    const arrow = y % ARROW_HEIGHT === 0 ? arrowImages[0] : arrowImages[1];
     let rotation = 0;
     let x = position * ARROW_WIDTH;
     if (position === 0) {
