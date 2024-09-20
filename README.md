@@ -7,7 +7,7 @@ This project tries to assign a stream of DDR arrows to feet in a way that minimi
 Usage
 -----
 
-List the arrows in order in the query parameter s, using either ULRD or 8462 notation.
+List the arrows in order in the query parameter a, using either ULRD or 8462 notation.
 
 Production
 ----------

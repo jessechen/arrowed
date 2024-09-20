@@ -3,7 +3,8 @@ const ARROW_WIDTH = 64;
 const TAU = Math.PI * 2;
 
 const params = new URLSearchParams(location.search);
-const string = params.get("s") || "ULRDULRDURLDURLD";
+const string = params.get("a") || "drudlrdrudrdluldrdluruldrdluruldulurdldrulurduruldrdlrulurl";
+const speed = params.get("s") || "1";
 const stream = string.split("").filter((char) => char.match(/[LDURldur2468]/));
 
 const numBeats = stream.length;
