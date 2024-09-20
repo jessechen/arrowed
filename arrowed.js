@@ -3,13 +3,17 @@ const ARROW_WIDTH = 64;
 const TAU = Math.PI * 2;
 
 const params = new URLSearchParams(location.search);
-const string = params.get("a") || "drudlrdrudrdluldrdluruldrdluruldulurdldrulurduruldrdlrulurl";
-const speed = params.get("s") || "1";
-const stream = string.split("").filter((char) => char.match(/[LDURldur2468]/));
+const arrowString = params.get("a") || "drudlrdrudrdluldrdluruldrdluruldulurdldrulurduruldrdlrulurl";
+const speedString = params.get("s") || "1";
+const stream = arrowString.split("").filter((char) => char.match(/[LDURldur2468]/));
+let speed = isNaN(parseFloat(speedString)) ? 1 : parseFloat(speedString);
+if (speed < 0.5 || speed > 3) {
+    speed = 1;
+}
 const numBeats = stream.length;
 
 const canvas = document.querySelector("canvas");
-canvas.setAttribute("height", ARROW_HEIGHT / 2 * (numBeats + 1));
+canvas.setAttribute("height", ARROW_HEIGHT / 2 * (numBeats + 1) * speed);
 canvas.setAttribute("width", ARROW_WIDTH * 4);
 const context = canvas.getContext("2d");
 draw();
@@ -22,7 +26,7 @@ async function draw() {
         for (let position of positions) {
             drawArrow(position, y, arrowImages);
         }
-        y += ARROW_HEIGHT / 2;
+        y += ARROW_HEIGHT / 2 * speed;
     }
 }
 

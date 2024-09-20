@@ -8,6 +8,7 @@ Usage
 -----
 
 List the arrows in order in the query parameter a, using either ULRD or 8462 notation.
+Set the distance to show between arrows by putting the scroll speed in the query parameter s.
 
 Production
 ----------
