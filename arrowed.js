@@ -2,8 +2,9 @@ const ARROW_HEIGHT = 64;
 const ARROW_WIDTH = 64;
 const TAU = Math.PI * 2;
 
-
-let stream = "ULRDULRDURLDURLD".split("");
+const params = new URLSearchParams(location.search);
+const string = params.get("s") || "ULRDULRDURLDURLD";
+const stream = string.split("").filter((char) => char.match(/[LDURldur2468]/));
 
 const numBeats = stream.length;
 const canvas = document.querySelector("canvas");
@@ -47,16 +48,16 @@ function drawArrow(position, y) {
 
 function arrowPositions(beat) {
     const result = [];
-    if (beat.includes("L")) {
+    if (beat.match(/[Ll4]/)) {
         result.push(0);
     }
-    if (beat.includes("D")) {
+    if (beat.match(/[Dd2]/)) {
         result.push(1);
     }
-    if (beat.includes("U")) {
+    if (beat.match(/[Uu8]/)) {
         result.push(2);
     }
-    if (beat.includes("R")) {
+    if (beat.match(/[Rr6]/)) {
         result.push(3);
     }
     return result;

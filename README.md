@@ -4,17 +4,20 @@
 
 This project tries to assign a stream of DDR arrows to feet in a way that minimizes total energy spent.
 
+Usage
+-----
+
+List the arrows in order in the query parameter s, using either ULRD or 8462 notation.
+
 Production
 ----------
 
-TBDeployed
+[GitHub Pages](https://jessechen.github.io/arrowed)
 
-~~[GitHub Pages](https://jessechen.github.io/arrowed/arrowed.html)~~
+Credits
+-------
 
-Prior Art
----------
-
-* TK
+Arrows are from Takuya's StepMania DDR Extreme noteskins.
 
 Setup
 -----
